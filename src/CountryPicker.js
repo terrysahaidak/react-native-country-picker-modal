@@ -6,6 +6,7 @@
 
 // eslint-disable-next-line
 import React, { Component } from 'react';
+import T from 'prop-types';
 // eslint-disable-next-line
 import {
   StyleSheet,
@@ -52,18 +53,18 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 export default class CountryPicker extends Component {
   static propTypes = {
-    cca2: React.PropTypes.string.isRequired,
-    translation: React.PropTypes.string,
-    onChange: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func,
-    closeable: React.PropTypes.bool,
-    filterable: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    countryList: React.PropTypes.array,
-    excludeCountries: React.PropTypes.array,
-    styles: React.PropTypes.object,
-    filterPlaceholder: React.PropTypes.string,
-    autoFocusFilter: React.PropTypes.bool,
+    cca2: T.string.isRequired,
+    translation: T.string,
+    onChange: T.func.isRequired,
+    onClose: T.func,
+    closeable: T.bool,
+    filterable: T.bool,
+    children: T.node,
+    countryList: T.array,
+    excludeCountries: T.array,
+    styles: T.object,
+    filterPlaceholder: T.string,
+    autoFocusFilter: T.bool,
   }
 
   static defaultProps = {

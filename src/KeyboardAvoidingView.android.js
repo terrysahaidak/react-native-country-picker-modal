@@ -1,4 +1,5 @@
 import React from 'react';
+import T from 'prop-types';
 
 import {
   StyleSheet,
@@ -16,9 +17,9 @@ const KeyboardAvoidingView = props => (
 );
 
 KeyboardAvoidingView.propTypes = {
-  offset: React.PropTypes.number,
-  children: React.PropTypes.node,
-  styles: React.PropTypes.array,
+  offset: T.number,
+  children: T.node,
+  styles: T.array,
 };
 
 export default KeyboardAvoidingView;
