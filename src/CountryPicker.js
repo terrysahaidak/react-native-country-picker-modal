@@ -27,6 +27,7 @@ import { getHeightPercent } from './ratio';
 import CloseButton from './CloseButton';
 import countryPickerStyles from './CountryPicker.style';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
+import SafeAreaView from './SafeAreaView';
 
 let countries = null;
 let Emoji = null;
@@ -314,53 +315,59 @@ export default class CountryPicker extends Component {
           onRequestClose={() => this.setState({ modalVisible: false })}
         >
           <View style={styles.modalContainer}>
-            <View style={styles.header}>
-              {
-                this.props.closeable &&
-                  <CloseButton
-                    onPress={() => this.onClose()}
-                  />
-              }
-              {
-                this.props.filterable &&
-                  <TextInput
-                    autoFocus={this.props.autoFocusFilter}
-                    autoCorrect={false}
-                    placeholder={this.props.filterPlaceholder}
-                    style={[styles.input, !this.props.closeable && styles.inputOnly]}
-                    underlineColorAndroid="transparent"
-                    onChangeText={this.handleFilterChange}
-                    value={this.state.filter}
-                  />
-              }
-            </View>
-            <KeyboardAvoidingView behavior="padding">
-              <View style={styles.contentContainer}>
-                <ListView
-                  keyboardShouldPersistTaps="always"
-                  enableEmptySections
-                  ref={listView => this._listView = listView}
-                  dataSource={this.state.dataSource}
-                  renderRow={country => this.renderCountry(country)}
-                  initialListSize={30}
-                  pageSize={15}
-                  onLayout={
-                    (
-                      { nativeEvent: { layout: { y: offset } } }
-                    ) => this.setVisibleListHeight(offset)
-                  }
-                />
-                <ScrollView
-                  contentContainerStyle={styles.letters}
-                  keyboardShouldPersistTaps="always"
-                >
-                  {
-                    this.state.filter === '' &&
-                    this.state.letters.map((letter, index) => this.renderLetters(letter, index))
-                  }
-                </ScrollView>
+            <SafeAreaView
+              forceInset={{
+                top: 'always', horizontal: 'never',
+              }}
+            >
+              <View style={styles.header}>
+                {
+                  this.props.closeable &&
+                    <CloseButton
+                      onPress={() => this.onClose()}
+                    />
+                }
+                {
+                  this.props.filterable &&
+                    <TextInput
+                      autoFocus={this.props.autoFocusFilter}
+                      autoCorrect={false}
+                      placeholder={this.props.filterPlaceholder}
+                      style={[styles.input, !this.props.closeable && styles.inputOnly]}
+                      underlineColorAndroid="transparent"
+                      onChangeText={this.handleFilterChange}
+                      value={this.state.filter}
+                    />
+                }
               </View>
-            </KeyboardAvoidingView>
+              <KeyboardAvoidingView behavior="padding">
+                <View style={styles.contentContainer}>
+                  <ListView
+                    keyboardShouldPersistTaps="always"
+                    enableEmptySections
+                    ref={listView => this._listView = listView}
+                    dataSource={this.state.dataSource}
+                    renderRow={country => this.renderCountry(country)}
+                    initialListSize={30}
+                    pageSize={15}
+                    onLayout={
+                      (
+                        { nativeEvent: { layout: { y: offset } } }
+                      ) => this.setVisibleListHeight(offset)
+                    }
+                  />
+                  <ScrollView
+                    contentContainerStyle={styles.letters}
+                    keyboardShouldPersistTaps="always"
+                  >
+                    {
+                      this.state.filter === '' &&
+                      this.state.letters.map((letter, index) => this.renderLetters(letter, index))
+                    }
+                  </ScrollView>
+                </View>
+              </KeyboardAvoidingView>
+            </SafeAreaView>
           </View>
         </Modal>
       </View>
