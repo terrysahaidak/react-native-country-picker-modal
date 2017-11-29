@@ -27,7 +27,6 @@ import { getHeightPercent } from './ratio';
 import CloseButton from './CloseButton';
 import countryPickerStyles from './CountryPicker.style';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
-import SafeAreaView from './SafeAreaView';
 
 let countries = null;
 let Emoji = null;
@@ -315,11 +314,6 @@ export default class CountryPicker extends Component {
           onRequestClose={() => this.setState({ modalVisible: false })}
         >
           <View style={styles.modalContainer}>
-            <SafeAreaView
-              forceInset={{
-                top: 'always', horizontal: 'never',
-              }}
-            >
               <View style={styles.header}>
                 {
                   this.props.closeable &&
@@ -367,7 +361,6 @@ export default class CountryPicker extends Component {
                   </ScrollView>
                 </View>
               </KeyboardAvoidingView>
-            </SafeAreaView>
           </View>
         </Modal>
       </View>

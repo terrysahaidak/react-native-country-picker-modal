@@ -1,6 +1,17 @@
 // eslint-disable-next-line
-import { Platform, StyleSheet, PixelRatio } from 'react-native';
+import { Platform, StyleSheet, PixelRatio, Dimensions } from 'react-native';
 import { getWidthPercent, getHeightPercent } from './ratio';
+
+const isIphoneX = () => {
+  let dimen = Dimensions.get('window');
+  return (
+      Platform.OS === 'ios' &&
+      !Platform.isPad &&
+      !Platform.isTVOS &&
+      (dimen.height === 812 || dimen.width === 812)
+  );
+}
+
 
 export default StyleSheet.create({
   modalContainer: {
@@ -14,7 +25,9 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    marginTop: Platform.OS === 'ios' ? 16 : 0,
+    marginTop: isIphoneX()
+      ? 36
+      : Platform.OS === 'ios' ? 16 : 0,
     flexDirection: 'row',
     alignItems: 'center',
   },
