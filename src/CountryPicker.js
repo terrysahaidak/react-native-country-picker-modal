@@ -328,6 +328,7 @@ export default class CountryPicker extends Component {
                     autoCorrect={false}
                     placeholder={this.props.filterPlaceholder}
                     style={[styles.input, !this.props.closeable && styles.inputOnly]}
+                    underlineColorAndroid="transparent"
                     onChangeText={this.handleFilterChange}
                     value={this.state.filter}
                   />
