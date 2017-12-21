@@ -19,7 +19,7 @@ import {
   ListView,
   ScrollView,
   Platform,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 import Fuse from 'fuse.js';
 
@@ -294,9 +294,12 @@ export default class CountryPicker extends Component {
   }
 
   render() {
+    const { ButtonComponent = TouchableOpacity } = this.props;
+
+
     return (
       <View>
-        <TouchableWithoutFeedback
+        <ButtonComponent
           onPress={() => this.setState({ modalVisible: true })}
           activeOpacity={0.7}
         >
@@ -308,7 +311,7 @@ export default class CountryPicker extends Component {
                 {CountryPicker.renderFlag(this.props.cca2)}
               </View>)
           }
-        </TouchableWithoutFeedback>
+        </ButtonComponent>
         <Modal
           visible={this.state.modalVisible}
           onShow={this.props.onShow}
