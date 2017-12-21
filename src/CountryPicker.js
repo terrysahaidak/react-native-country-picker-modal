@@ -19,7 +19,6 @@ import {
   ListView,
   ScrollView,
   Platform,
-  TouchableOpacity,
 } from 'react-native';
 import Fuse from 'fuse.js';
 
